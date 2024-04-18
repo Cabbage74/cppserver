@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include "util.h"
 
+const int BUFFER_SIZE = 1024;
 
 int main() {
     int sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -18,7 +19,7 @@ int main() {
     errif(connect(sockfd, (sockaddr*)&serv_addr, sizeof(serv_addr)) == -1, "socket connect error");    
     
     while (true) {
-        char buf[1024];
+        char buf[BUFFER_SIZE];
         memset(buf, 0, sizeof buf);
         scanf("%s", buf);
         // 将buf中的数据写入与服务器通信的socket，返回已发送数据大小
